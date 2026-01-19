@@ -1,0 +1,8 @@
+[PLACEHOLDER IMAGE FILE]
+This file represents the 'architecture-diagram.png' asset.
+In a real deployment, this would be a high-fidelity PNG export from Lucidchart or Draw.io showing:
+1. User -> Application Load Balancer
+2. EKS Control Plane manages Worker Nodes
+3. Prometheus scrapes /metrics from DCGM Exporter
+4. HPA queries Prometheus Adapter
+5. GPU Nodes scale based on custom metric

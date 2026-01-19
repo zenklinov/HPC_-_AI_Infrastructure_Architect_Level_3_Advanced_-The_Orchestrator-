@@ -1,0 +1,37 @@
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: gpu-hpa
+  namespace: gpu-orchestrator
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: pytorch-inference-server
+  minReplicas: 1
+  maxReplicas: 5
+  metrics:
+  - type: Object
+    object:
+      metric:
+        name: DCGM_FI_DEV_GPU_UTIL
+      describedObject:
+        apiVersion: v1
+        kind: Service
+        name: dcgm-exporter
+      target:
+        type: Value
+        value: 80
+  # Note: This requires k8s-prometheus-adapter to map Prometheus queries to Custom Metrics API
+  behavior:
+    scaleUp:
+      stabilizationWindowSeconds: 0
+      policies:
+      - type: Percent
+        value: 100
+        periodSeconds: 15
+    scaleDown:
+      policies:
+      - type: Percent
+        value: 50
+        periodSeconds: 300

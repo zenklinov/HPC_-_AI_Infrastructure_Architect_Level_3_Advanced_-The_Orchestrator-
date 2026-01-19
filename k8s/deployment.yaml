@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pytorch-inference-server
+  namespace: gpu-orchestrator
+  labels:
+    app: pytorch-inference
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pytorch-inference
+  template:
+    metadata:
+      labels:
+        app: pytorch-inference
+    spec:
+      containers:
+      - name: cuda-container
+        image: pytorch/pytorch:2.0.1-cuda11.7-cudnn8-runtime
+        # Simulating an inference server
+        command: ["python3", "-c", "import time; print('Model Loaded on GPU'); time.sleep(3600)"] 
+        resources:
+          limits:
+            nvidia.com/gpu: 1
+          requests:
+            nvidia.com/gpu: 1
+            cpu: "2"
+            memory: "4Gi"
+        ports:
+        - containerPort: 8080
+      tolerations:
+      - key: "sku"
+        operator: "Equal"
+        value: "gpu"
+        effect: "NoSchedule"
+      nodeSelector:
+        instance-type: "g4dn"

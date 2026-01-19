@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: gpu-orchestrator
+  labels:
+    name: gpu-orchestrator
+    environment: production
+    tier: high-performance-compute
