@@ -1,4 +1,13 @@
 # Level 3: Advanced (The "Orchestrator")
+![License](https://img.shields.io/badge/license-MIT-blue.svg)
+![Kubernetes](https://img.shields.io/badge/kubernetes-orchestration-326CE5?logo=kubernetes&logoColor=white)
+![AWS](https://img.shields.io/badge/AWS-EKS%20%2F%20EC2-orange?logo=amazonaws&logoColor=white)
+![NVIDIA](https://img.shields.io/badge/NVIDIA-GPU%20T4-green?logo=nvidia)
+![Prometheus](https://img.shields.io/badge/Prometheus-monitoring-E6522C?logo=prometheus&logoColor=white)
+![Grafana](https://img.shields.io/badge/Grafana-observability-F46800?logo=grafana&logoColor=white)
+![AutoScaling](https://img.shields.io/badge/HPA-GPU--aware-success)
+![Status](https://img.shields.io/badge/status-production--ready-success)
+
 ## K8s GPU Cluster with Auto-Scaling & Monitoring
 
 > **Status**: Production Ready / Architect Level
@@ -96,5 +105,6 @@ cd scripts
 **Professional Discipline**: "It works" is not done. "It is cleaned up" is done. Leaving resources running is unprofessional.
 
 ---
+
 
 
